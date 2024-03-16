@@ -32,21 +32,6 @@ pub fn global_attrs(span: Span) -> StringyMap<Ident, TokenStream> {
         insert("style", "String");
         insert("tabindex", "isize");
         insert("title", "String");
-        
-        // Global htmx parameters. Otherwise, we'll spend too much time "fixing" elements.rs 
-        insert("hx-post","String");
-        insert("hx-get","String");
-        insert("hx-on","String");
-        insert("hx-push-url","String");
-        insert("hx-target","String");
-        insert("hx-swap","String");
-        insert("hx-select","String");
-        insert("hx-trigger","String");
-        insert("hx-confirm","String");
-        insert("hx-delete","String");
-        
-        
-
         // FIXME ARIA and XML attrs missing
     }
     attrs

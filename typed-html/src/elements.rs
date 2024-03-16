@@ -57,6 +57,17 @@ declare_elements! {
     head with [title] MetadataContent;
     body with FlowContent;
 
+    // HTMX
+    htmx {
+        hx-post: String,
+        hx-get: String,
+        hx-target: String,
+        hx-swap: String,
+        hx-trigger: String,
+        hx-confirm: String,
+        hx-delete: String,
+    } in [FlowContent] with FlowContent;
+    
     // Metadata
     base {
         href: Uri,
