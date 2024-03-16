@@ -96,7 +96,6 @@ declare_elements! {
         rel: SpacedList<LinkType>,
         target: Target,
         type: Mime,
-        hx-post: Uri,
     } in [FlowContent, PhrasingContent, InteractiveContent] with FlowContent;
     abbr in [FlowContent, PhrasingContent] with PhrasingContent;
     address in [FlowContent] with FlowContent;
