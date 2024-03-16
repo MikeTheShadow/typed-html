@@ -49,6 +49,7 @@ marker_trait!(MediaContent); // <audio> and <video>
 marker_trait!(SelectContent);
 marker_trait!(TableContent);
 marker_trait!(TableColumnContent);
+marker_trait!(HTMXContent);
 
 declare_elements! {
     html {
@@ -66,7 +67,7 @@ declare_elements! {
         hx-trigger: String,
         hx-confirm: String,
         hx-delete: String,
-    } in [FlowContent] with FlowContent;
+    } in [HTMXContent] with FlowContent;
     
     // Metadata
     base {
@@ -107,6 +108,13 @@ declare_elements! {
         rel: SpacedList<LinkType>,
         target: Target,
         type: Mime,
+        hx-post: String,
+        hx-get: String,
+        hx-target: String,
+        hx-swap: String,
+        hx-trigger: String,
+        hx-confirm: String,
+        hx-delete: String,
     } in [FlowContent, PhrasingContent, InteractiveContent] with FlowContent;
     abbr in [FlowContent, PhrasingContent] with PhrasingContent;
     address in [FlowContent] with FlowContent;
@@ -140,6 +148,13 @@ declare_elements! {
         name: Id,
         type: ButtonType,
         value: String,
+        hx-post: String,
+        hx-get: String,
+        hx-target: String,
+        hx-swap: String,
+        hx-trigger: String,
+        hx-confirm: String,
+        hx-delete: String,
     } in [FlowContent, PhrasingContent, InteractiveContent, FormContent] with PhrasingContent;
     canvas {
         height: usize,
@@ -182,6 +197,13 @@ declare_elements! {
         name: Id,
         novalidate: Bool,
         target: Target,
+        hx-post: String,
+        hx-get: String,
+        hx-target: String,
+        hx-swap: String,
+        hx-trigger: String,
+        hx-confirm: String,
+        hx-delete: String,
     } in [FlowContent] with FlowContent;
     h1 in [FlowContent, HeadingContent, HGroupContent] with PhrasingContent;
     h2 in [FlowContent, HeadingContent, HGroupContent] with PhrasingContent;
