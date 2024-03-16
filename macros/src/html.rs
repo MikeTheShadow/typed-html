@@ -207,8 +207,8 @@ impl Element {
                                 .path()
                                 .to_str()
                                 .unwrap_or("unknown"),
-                            span.unstable().start().line,
-                            span.unstable().start().column
+                            span.unstable().start().line(),
+                            span.unstable().start().column()
                         );
                     }
                     eprintln_msg += &format!(
@@ -338,8 +338,8 @@ impl Element {
                                 .path()
                                 .to_str()
                                 .unwrap_or("unknown"),
-                            span.unstable().start().line,
-                            span.unstable().start().column
+                            span.unstable().start().line(),
+                            span.unstable().start().column()
                         );
                     }
                     eprintln_msg += &format!(
