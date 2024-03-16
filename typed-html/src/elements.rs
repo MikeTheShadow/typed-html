@@ -61,6 +61,9 @@ declare_elements! {
     base {
         href: Uri,
         target: Target,
+        hx-post: Uri,
+        hx-get: Uri,
+        hx-post: Uri,
     } in [MetadataContent];
     link {
         as: Mime,
