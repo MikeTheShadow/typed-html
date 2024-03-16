@@ -61,9 +61,6 @@ declare_elements! {
     base {
         href: Uri,
         target: Target,
-        hx-post: Uri,
-        hx-get: Uri,
-        hx-post: Uri,
     } in [MetadataContent];
     link {
         as: Mime,
@@ -99,6 +96,7 @@ declare_elements! {
         rel: SpacedList<LinkType>,
         target: Target,
         type: Mime,
+        hx-post: Uri,
     } in [FlowContent, PhrasingContent, InteractiveContent] with FlowContent;
     abbr in [FlowContent, PhrasingContent] with PhrasingContent;
     address in [FlowContent] with FlowContent;
