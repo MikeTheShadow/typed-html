@@ -58,6 +58,8 @@ pub enum ButtonType {
     Reset,
     #[strum(to_string = "button")]
     Button,
+    #[strum(to_string = "post")]
+    Post
 }
 
 #[derive(EnumString, Display, PartialEq, Eq, PartialOrd, Ord, AsRefStr, IntoStaticStr)]
