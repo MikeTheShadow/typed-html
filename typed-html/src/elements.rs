@@ -455,10 +455,12 @@ declare_elements! {
 fn test_data_attributes() {
     use crate as typed_html;
     use crate::{dom::DOMTree, html};
-    
+
     let frag: DOMTree<String> = html!(<div data-id="1234">"Boo!"</div>);
-    
+
     assert_eq!("<div data-id=\"1234\">Boo!</div>", frag.to_string());
 
-    let frag: DOMTree<String> = html!(<div data-id="1234"><a href="" hx-get="test-post"></a></div>);
+    let frag: DOMTree<String> = html!(<div trigger-click="function(data)" data-id="1234"><a href="" hx-get="test-post"></a></div>);
+    
+    println!("{}", frag);
 }

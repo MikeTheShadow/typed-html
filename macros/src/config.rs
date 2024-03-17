@@ -42,6 +42,9 @@ pub fn global_attrs(span: Span) -> StringyMap<Ident, TokenStream> {
         insert("hx_confirm","String");
         insert("hx_delete","String");
         insert("hx_trigger","String");
+        
+        // This parses on-click
+        insert("trigger_click","String");
         // FIXME ARIA and XML attrs missing
     }
     attrs
