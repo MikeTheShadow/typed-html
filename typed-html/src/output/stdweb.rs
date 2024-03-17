@@ -178,7 +178,6 @@ impl Stdweb {
             VNode::Element(element) => {
                 let mut node = document.create_element(element.name)?;
                 for (key, value) in element.attributes {
-                    println!("Raw attrib: {}",key);
                     node.set_attribute(key, &value)?;
                 }
                 Stdweb::install_handlers(&mut node, element.events);

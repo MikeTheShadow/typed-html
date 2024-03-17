@@ -106,6 +106,7 @@ impl Declare {
             pub struct #elem_name<T> where T: crate::OutputType + Send {
                 pub attrs: #attr_type_name,
                 pub data_attributes: Vec<(&'static str, String)>,
+                pub htmx_attributes: Vec<(&'static str, String)>,
                 pub events: T::Events,
                 #body
             }
@@ -131,6 +132,7 @@ impl Declare {
             attrs: #attr_type_name { #attrs },
         ));
         body.extend(quote!(data_attributes: Vec::new(),));
+        body.extend(quote!(htmx_attributes: Vec::new(),));
 
         for (child_name, _, _) in self.req_children() {
             body.extend(quote!( #child_name, ));
@@ -355,6 +357,10 @@ impl Declare {
                     #print_attrs
                     for (key, value) in &self.data_attributes {
                         write!(f, " data-{}=\"{}\"", key,
+                               crate::escape_html_attribute(value.to_string()))?;
+                    }
+                    for (key, value) in &self.htmx_attributes {
+                        write!(f, " {}=\"{}\"", key,
                                crate::escape_html_attribute(value.to_string()))?;
                     }
                     write!(f, "{}", self.events)?;

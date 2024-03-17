@@ -32,6 +32,15 @@ pub fn global_attrs(span: Span) -> StringyMap<Ident, TokenStream> {
         insert("style", "String");
         insert("tabindex", "isize");
         insert("title", "String");
+        
+        // Global identifiers
+        insert("hx_post","String");
+        insert("hx_get","String");
+        insert("hx_target","String");
+        insert("hx_swap","String");
+        insert("hx_trigger","String");
+        insert("hx_confirm","String");
+        insert("hx_delete","String");
         // FIXME ARIA and XML attrs missing
     }
     attrs

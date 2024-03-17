@@ -58,17 +58,6 @@ declare_elements! {
     head with [title] MetadataContent;
     body with FlowContent;
 
-    // HTMX
-    htmx {
-        hx-post: String,
-        hx-get: String,
-        hx-target: String,
-        hx-swap: String,
-        hx-trigger: String,
-        hx-confirm: String,
-        hx-delete: String,
-    } in [HTMXContent] with FlowContent;
-    
     // Metadata
     base {
         href: Uri,
@@ -108,13 +97,6 @@ declare_elements! {
         rel: SpacedList<LinkType>,
         target: Target,
         type: Mime,
-        hx-post: String,
-        hx-get: String,
-        hx-target: String,
-        hx-swap: String,
-        hx-trigger: String,
-        hx-confirm: String,
-        hx-delete: String,
     } in [FlowContent, PhrasingContent, InteractiveContent] with FlowContent;
     abbr in [FlowContent, PhrasingContent] with PhrasingContent;
     address in [FlowContent] with FlowContent;
@@ -148,13 +130,6 @@ declare_elements! {
         name: Id,
         type: ButtonType,
         value: String,
-        hx-post: String,
-        hx-get: String,
-        hx-target: String,
-        hx-swap: String,
-        hx-trigger: String,
-        hx-confirm: String,
-        hx-delete: String,
     } in [FlowContent, PhrasingContent, InteractiveContent, FormContent] with PhrasingContent;
     canvas {
         height: usize,
@@ -197,13 +172,6 @@ declare_elements! {
         name: Id,
         novalidate: Bool,
         target: Target,
-        hx-post: String,
-        hx-get: String,
-        hx-target: String,
-        hx-swap: String,
-        hx-trigger: String,
-        hx-confirm: String,
-        hx-delete: String,
     } in [FlowContent] with FlowContent;
     h1 in [FlowContent, HeadingContent, HGroupContent] with PhrasingContent;
     h2 in [FlowContent, HeadingContent, HGroupContent] with PhrasingContent;
@@ -487,8 +455,10 @@ declare_elements! {
 fn test_data_attributes() {
     use crate as typed_html;
     use crate::{dom::DOMTree, html};
-
+    
     let frag: DOMTree<String> = html!(<div data-id="1234">"Boo!"</div>);
-
+    
     assert_eq!("<div data-id=\"1234\">Boo!</div>", frag.to_string());
+
+    let frag: DOMTree<String> = html!(<div data-id="1234"><a href="" hx-get="test-post"></a></div>);
 }

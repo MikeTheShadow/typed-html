@@ -108,6 +108,19 @@ fn extract_data_attrs(attrs: &mut StringyMap<Ident, TokenTree>) -> StringyMap<St
     data
 }
 
+fn extract_htmx_attrs(attrs: &mut StringyMap<Ident, TokenTree>) -> StringyMap<String, TokenTree> {
+    let mut data = StringyMap::new();
+    let keys: Vec<Ident> = attrs.keys().cloned().collect();
+    for key in keys {
+        let key_name = key.to_string();
+        if let Some(key_name) = key_name.strip_prefix("hx_")  {
+            let value = attrs.remove(&key).unwrap();
+            data.insert(format!("hx-{}",key_name.to_string()),value);
+        }
+    }
+    data
+}
+
 fn extract_event_handlers(
     attrs: &mut StringyMap<Ident, TokenTree>,
 ) -> StringyMap<Ident, TokenTree> {
@@ -172,6 +185,7 @@ impl Element {
         }
         let events = extract_event_handlers(&mut self.attributes);
         let data_attrs = extract_data_attrs(&mut self.attributes);
+        let htmx_attrs = extract_htmx_attrs(&mut self.attributes);
         let attrs = self.attributes.iter().map(|(key, value)| {
             (
                 key.to_string(),
@@ -215,11 +229,11 @@ impl Element {
                         "<{} {}={}> failed to parse attribute value: {{}}",
                         name_str, attr_str, lit,
                     );
+                    
                     #[cfg(not(can_show_location_of_runtime_parse_error))]
                     {
                         eprintln_msg += "\nERROR: rebuild with nightly to print source location";
                     }
-
                     body.extend(quote!(
                         element.attrs.#key = Some(#lit.parse().unwrap_or_else(|err| {
                             eprintln!(#eprintln_msg, err);
@@ -241,6 +255,14 @@ impl Element {
         {
             body.extend(quote!(
                 element.data_attributes.push((#key, #value.into()));
+            ));
+        }
+        for (key, value) in htmx_attrs
+            .iter()
+            .map(|(k, v)| (TokenTree::from(Literal::string(k)), v.clone()))
+        {
+            body.extend(quote!(
+                element.htmx_attributes.push((#key, #value.into()));
             ));
         }
         body.extend(opt_children);
