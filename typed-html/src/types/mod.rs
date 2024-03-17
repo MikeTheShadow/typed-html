@@ -178,6 +178,9 @@ pub enum InputType {
     Url,
     #[strum(to_string = "week")]
     Week,
+    // HTMX ??
+    #[strum(to_string = "post")]
+    Post,
 }
 
 #[derive(EnumString, Display, PartialEq, Eq, PartialOrd, Ord, AsRefStr, IntoStaticStr)]
