@@ -5,10 +5,6 @@
 This crate provides the `html!` macro for building fully type checked HTML documents inside your
 Rust code using roughly [JSX] compatible syntax.
 
-## Not Currently Maintained
-
-This project is not currently being maintained. If you would like to take over maintainership, please [leave an issue](https://github.com/bodil/typed-html/issues/new).
-
 ## Quick Preview
 
 ```rust
@@ -86,6 +82,10 @@ expected type. This is extremely useful for eg. CSS classes, letting you type
 constructing a [`SpacedSet<Class>`][SpacedSet]. The big caveat for this:
 currently, the macro is not able to validate the string at compile time, and the
 conversion will panic at runtime if the string is invalid.
+
+## HTMX Support
+
+Some basic HTMX attributes are supported globally. Allowing you to use them on any element
 
 ### Example
 
