@@ -133,6 +133,9 @@ fn extract_trigger_attrs(attrs: &mut StringyMap<Ident, TokenTree>) -> StringyMap
                 "trigger_click" => {
                     data.insert("onclick".to_string(), value);
                 }
+                "trigger_input" => {
+                    data.insert("oninput".to_string(), value);
+                }
                 &_ => {
                     data.insert(format!("{}",key_name.to_string()),value);
                 }

@@ -45,6 +45,8 @@ pub fn global_attrs(span: Span) -> StringyMap<Ident, TokenStream> {
         
         // This parses on-click
         insert("trigger_click","String");
+        // This parses on-input
+        insert("trigger_input","String");
         // FIXME ARIA and XML attrs missing
     }
     attrs
